@@ -10,32 +10,32 @@ public class BasicLinkedListOperations {
     }
 
     public static Node listInsert(Node head, Node x) {
-        x.next = head;
-        return x;
+        x.next = head; // new node -> current head
+        return x;      // new node becomes head
     }
 
     public static Node listSearch(Node head, int key) {
         Node curr = head;
         
         while (curr != null) {
-            if (curr.key == key) return curr;
-            curr = curr.next;
+            if (curr.key == key) return curr; // return node if key found
+            curr = curr.next;                 // move to next node if not found
         }
-        return null;
+        return null; // key not found
     }
 
     public static Node listDelete(Node head, Node x) {
-        if (head == null) return null; 
+        if (head == null) return null; // if list empty return null
 
-        if (head == x) return head.next;
+        if (head == x) return head.next; // deleting head -> next node becomes new head
         
         Node curr = head;
         while (curr.next != null && curr.next != x) {
-            curr = curr.next;
+            curr = curr.next; // move to node before x
         }
 
         if (curr.next == x) {
-            curr.next = x.next;
+            curr.next = x.next; // remove x by "skipping" node
         }
 
         return head;
@@ -70,7 +70,7 @@ public class BasicLinkedListOperations {
         System.out.println("Not found: " + found2);
 
         Node deleteNode = listSearch(head, 1);
-        Node delete = listDelete(head, deleteNode);
+        head = listDelete(head, deleteNode);
 
         // move through list to print
         curr = head;
